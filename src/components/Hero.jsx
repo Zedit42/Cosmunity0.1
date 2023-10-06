@@ -45,7 +45,6 @@ export const ConnectWallet = forwardRef((_, ref) => {
         setCosmosToken('AKT');
     };
     useEffect(() => {
-        console.log(cosmosAddress);
       if (cosmosAddress!= undefined) {
         buttonHandlerKeplrBalance();
       }
@@ -72,7 +71,7 @@ export const ConnectWallet = forwardRef((_, ref) => {
 
 
             {cosmosAddress ? (
-            <div className=" z-10 pixelbg max-w-[90%]">
+            <div className=" z-10 pixelbg max-w-[90%] max-h-[85vh]">
                 {/* <label>
                     Available balance of {cosmosAddress}: {cosmosBalance} {cosmosToken}
                 </label>
