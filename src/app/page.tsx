@@ -2,8 +2,8 @@ import { ConnectWallet } from '../components/Hero'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between ">
+    <div className="flex -mt-[3rem] h-screen flex-col items-center  ">
       <ConnectWallet/>
-    </main>
+    </div>
   )
 }

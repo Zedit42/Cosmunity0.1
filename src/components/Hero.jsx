@@ -2,6 +2,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { StargateClient } from "@cosmjs/stargate";
 import ChatBox from '../components/ChatBox'
+import Link from "next/link";
 
 export const ConnectWallet = forwardRef((_, ref) => {
 
@@ -31,25 +32,25 @@ export const ConnectWallet = forwardRef((_, ref) => {
     };
 
     // Button handler button for handling a balance request for Cosmos SDK wallet as RPC.
-    const buttonHandlerKeplrBalance = async() => {
+    // const buttonHandlerKeplrBalance = async() => {
 
-        const client = await StargateClient.connect('https://rpc.akashnet.net:443');
+    //     const client = await StargateClient.connect('https://rpc.akashnet.net:443');
 
-        // Get balance as Coin.
-        // Amount is the number of coins, while denom is the identifier of the coins.
-        const balanceAsCoin = await client.getBalance(cosmosAddress, 'uakt');
-        const balance = parseInt(balanceAsCoin.amount) * 1/1e6;
+    //     // Get balance as Coin.
+    //     // Amount is the number of coins, while denom is the identifier of the coins.
+    //     const balanceAsCoin = await client.getBalance(cosmosAddress, 'uakt');
+    //     const balance = parseInt(balanceAsCoin.amount) * 1/1e6;
 
-        // Set state values.
-        setCosmosBalance(balance);
-        setCosmosToken('AKT');
-    };
-    useEffect(() => {
-      if (cosmosAddress!= undefined) {
-        buttonHandlerKeplrBalance();
-      }
+    //     // Set state values.
+    //     setCosmosBalance(balance);
+    //     setCosmosToken('AKT');
+    // };
+    // useEffect(() => {
+    //   if (cosmosAddress!= undefined) {
+    //     buttonHandlerKeplrBalance();
+    //   }
     
-    }, [cosmosAddress])
+    // }, [cosmosAddress])
     
 
     // Clear cosmos balance data.
@@ -66,12 +67,12 @@ export const ConnectWallet = forwardRef((_, ref) => {
         <>
             <img
                 src="/bg.png"
-                className=" fixed w-screen min-w-[1024px] h-screen object-cover z-0"
+                className=" fixed w-screen mt-[3rem] min-w-[1024px] h-screen object-cover -z-10"
             />
 
 
             {cosmosAddress ? (
-            <div className=" z-10 pixelbg max-w-[90%] max-h-[85vh]">
+            <div className=" z-20 pixelbg max-w-[100%]">
                 {/* <label>
                     Available balance of {cosmosAddress}: {cosmosBalance} {cosmosToken}
                 </label>
@@ -79,6 +80,12 @@ export const ConnectWallet = forwardRef((_, ref) => {
                     Get balance
                 </button> */}
                 <ChatBox walletAddress={cosmosAddress} tokenAmount={cosmosBalance}/>
+                <Link href={'/creategroup'} className=" fixed -bottom-8 -right-5 z-50 p-2 pixelbg">
+                <img
+                    src="/create.svg"
+                    className=" h-[2rem] w-[2rem]"                
+                />
+            </Link>
             </div>
             ) : (
                 <div className=" z-10 m-auto scale-150">
